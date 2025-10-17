@@ -6,11 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { users, getLoansByUserId, getDocumentsByUserId, User } from '@/lib/dummyData';
-import ClientSearchAndFilter from '@/components/clients/SearchandFilter';
-import ClientTable from '@/components/clients/Tables';
-import PersonalInfoTab from '@/components/clients/PersonalInfo';
-import DocumentsTab from '@/components/clients/Documents';
-import LoansTab from '@/components/clients/Loan';
+import ClientSearchAndFilter from '@/components/dashboard/clients/SearchandFilter';
+import ClientTable from '@/components/dashboard/clients/Tables';
+import PersonalInfoTab from '@/components/dashboard/clients/PersonalInfo';
+import DocumentsTab from '@/components/dashboard/clients/Documents';
+import LoansTab from '@/components/dashboard/clients/Loan';
 
 export default function ClientsPage() {
   const [searchTerm, setSearchTerm] = useState('');

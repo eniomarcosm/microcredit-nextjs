@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Eye } from 'lucide-react';
 import { User } from '@/lib/dummyData';
-import Pagination from '../pagination';
+import Pagination from '../../pagination';
 
 
 interface ClientTableProps {

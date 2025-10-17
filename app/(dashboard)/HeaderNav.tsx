@@ -146,7 +146,7 @@ export const HeaderNav = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="border-b  bg-muted/30">
-        <div className="container mx-auto max-w-screen-2xl flex h-16 items-center justify-between px-4 md:px-6 lg:px-32">
+        <div className="container mx-auto max-w-screen-7xl flex h-16 items-center justify-between px-4 md:px-6 lg:px-16">
           <div className="flex items-center space-x-4">
             {status === "authenticated" && (
               <div className="md:hidden">
@@ -201,8 +201,8 @@ export const HeaderNav = () => {
                 <PiggyBank className="h-6 w-6 text-primary-foreground" />
               </div>
               <div>
-                <span className="font-bold text-lg">MICROCREDIT</span>
-                <p className="text-xs text-muted-foreground font-medium hidden sm:block">
+                <span className="font-bold text-2xl">MICROCREDIT</span>
+                <p className="text-sm text-muted-foreground font-medium hidden sm:block">
                   Sistema de Gestão de Microcrédito
                 </p>
               </div>
@@ -377,12 +377,12 @@ export const HeaderNav = () => {
         <div className="px-4 md:px-6 lg:px-8 py-2 border-t border-slate-100 ">
           <div className="container max-w-screen-2xl mx-auto">
             <nav className="flex items-center justify-center">
-              <div className="flex items-center gap-1 overflow-x-auto">
+              <div className="flex text-sm items-center gap-4 overflow-x-auto">
                 {menuItems.map((item) => (
                   <Link key={item.id} href={item.href}>
                     <Button
                       variant={isActivePath(item.href) ? "default" : "ghost"}
-                      size="sm"
+                      size="lg"
                       className={`hidden md:flex items-center gap-2 transition-all duration-200 ${
                         isActivePath(item.href)
                           ? "bg-primary text-white shadow-sm"

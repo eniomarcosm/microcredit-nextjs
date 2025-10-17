@@ -46,33 +46,49 @@ export interface Loan {
   amount: number;
   interestRate: number;
   term: number;
-  status: 'pending' | 'approved' | 'rejected' | 'paid' | 'overdue';
+  status: 'pending' | 'active' | 'rejected' | 'paid' | 'overdue' | 'defaulted';
   requestedAt: string;
   updatedAt: string;
+  type: string;
+  branch: string;
+  loanOfficer: string;
+  disbursementDate: string | null;
 }
 
+const loanTypes = ['Pessoal', 'Negócio', 'Emergência', 'Agrícola'];
+const branches = ['Centro', 'Penduza', 'Txona', 'Moz Money', 'Comercial'];
+const loanOfficers = ['João Silva', 'Ana Costa', 'José Alves', 'Maria Lima'];
+
 export const loans: Loan[] = [
-  { id: 1, userId: 1, amount: 5000, interestRate: 1.5, term: 6, status: "approved", requestedAt: "2023-02-20T09:00:00Z", updatedAt: "2023-02-25T12:00:00Z" },
-  { id: 2, userId: 2, amount: 3000, interestRate: 2.0, term: 3, status: "pending", requestedAt: "2023-05-12T09:15:00Z", updatedAt: "2023-05-13T10:00:00Z" },
-  { id: 3, userId: 3, amount: 7000, interestRate: 1.2, term: 12, status: "rejected", requestedAt: "2023-07-25T09:45:00Z", updatedAt: "2023-07-26T11:00:00Z" },
-  { id: 4, userId: 4, amount: 4500, interestRate: 1.8, term: 6, status: "approved", requestedAt: "2023-09-15T09:30:00Z", updatedAt: "2023-09-16T12:30:00Z" },
-  { id: 5, userId: 5, amount: 6000, interestRate: 1.5, term: 12, status: "pending", requestedAt: "2024-01-10T10:00:00Z", updatedAt: "2024-01-11T11:30:00Z" },
-  { id: 6, userId: 6, amount: 3500, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2024-03-18T09:10:00Z", updatedAt: "2024-03-20T12:00:00Z" },
-  { id: 7, userId: 7, amount: 8000, interestRate: 1.2, term: 12, status: "approved", requestedAt: "2024-05-23T09:50:00Z", updatedAt: "2024-05-25T13:00:00Z" },
-  { id: 8, userId: 8, amount: 2000, interestRate: 1.5, term: 6, status: "rejected", requestedAt: "2024-07-21T08:40:00Z", updatedAt: "2024-07-22T11:00:00Z" },
-  { id: 9, userId: 9, amount: 5500, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2024-09-08T09:20:00Z", updatedAt: "2024-09-09T12:30:00Z" },
-  { id: 10, userId: 10, amount: 4000, interestRate: 1.8, term: 6, status: "approved", requestedAt: "2024-11-16T09:05:00Z", updatedAt: "2024-11-18T12:15:00Z" },
-  { id: 11, userId: 11, amount: 7500, interestRate: 1.5, term: 12, status: "pending", requestedAt: "2025-01-05T09:10:00Z", updatedAt: "2025-01-06T11:20:00Z" },
-  { id: 12, userId: 12, amount: 3200, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2025-03-12T09:45:00Z", updatedAt: "2025-03-15T12:00:00Z" },
-  { id: 13, userId: 13, amount: 6800, interestRate: 1.2, term: 12, status: "rejected", requestedAt: "2025-05-28T09:30:00Z", updatedAt: "2025-05-30T12:10:00Z" },
-  { id: 14, userId: 14, amount: 4700, interestRate: 1.8, term: 6, status: "approved", requestedAt: "2025-07-15T09:20:00Z", updatedAt: "2025-07-16T11:50:00Z" },
-  { id: 15, userId: 15, amount: 5900, interestRate: 1.5, term: 12, status: "pending", requestedAt: "2025-09-02T09:10:00Z", updatedAt: "2025-09-03T11:20:00Z" },
-  { id: 16, userId: 16, amount: 3600, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2025-10-12T09:45:00Z", updatedAt: "2025-10-15T12:30:00Z" },
-  { id: 17, userId: 17, amount: 8100, interestRate: 1.2, term: 12, status: "approved", requestedAt: "2023-04-20T09:15:00Z", updatedAt: "2023-04-25T12:40:00Z" },
-  { id: 18, userId: 18, amount: 2100, interestRate: 1.5, term: 6, status: "rejected", requestedAt: "2023-06-27T09:30:00Z", updatedAt: "2023-06-28T11:50:00Z" },
-  { id: 19, userId: 19, amount: 5600, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2023-08-10T09:40:00Z", updatedAt: "2023-08-12T12:20:00Z" },
-  { id: 20, userId: 20, amount: 4100, interestRate: 1.8, term: 6, status: "approved", requestedAt: "2023-10-23T09:50:00Z", updatedAt: "2023-10-25T12:45:00Z" },
+  { id: 1, userId: 1, amount: 50000, interestRate: 1.5, term: 6, status: "active", requestedAt: "2023-02-20T09:00:00Z", updatedAt: "2023-02-25T12:00:00Z", type: loanTypes[0], branch: branches[0], loanOfficer: loanOfficers[0], disbursementDate: "2023-02-25T12:00:00Z" },
+  { id: 2, userId: 2, amount: 30000, interestRate: 2.0, term: 3, status: "pending", requestedAt: "2023-05-12T09:15:00Z", updatedAt: "2023-05-13T10:00:00Z", type: loanTypes[1], branch: branches[1], loanOfficer: loanOfficers[1], disbursementDate: null },
+  { id: 3, userId: 3, amount: 70000, interestRate: 1.2, term: 12, status: "overdue", requestedAt: "2023-07-25T09:45:00Z", updatedAt: "2023-07-26T11:00:00Z", type: loanTypes[2], branch: branches[2], loanOfficer: loanOfficers[2], disbursementDate: "2023-07-26T11:00:00Z" },
+  { id: 4, userId: 4, amount: 45000, interestRate: 1.8, term: 6, status: "active", requestedAt: "2023-09-15T09:30:00Z", updatedAt: "2023-09-16T12:30:00Z", type: loanTypes[3], branch: branches[3], loanOfficer: loanOfficers[3], disbursementDate: "2023-09-16T12:30:00Z" },
+  { id: 5, userId: 5, amount: 60000, interestRate: 1.5, term: 12, status: "pending", requestedAt: "2024-01-10T10:00:00Z", updatedAt: "2024-01-11T11:30:00Z", type: loanTypes[0], branch: branches[4], loanOfficer: loanOfficers[0], disbursementDate: null },
+  { id: 6, userId: 6, amount: 35000, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2024-03-18T09:10:00Z", updatedAt: "2024-03-20T12:00:00Z", type: loanTypes[1], branch: branches[0], loanOfficer: loanOfficers[1], disbursementDate: "2024-03-20T12:00:00Z" },
+  { id: 7, userId: 7, amount: 80000, interestRate: 1.2, term: 12, status: "active", requestedAt: "2024-05-23T09:50:00Z", updatedAt: "2024-05-25T13:00:00Z", type: loanTypes[2], branch: branches[1], loanOfficer: loanOfficers[2], disbursementDate: "2024-05-25T13:00:00Z" },
+  { id: 8, userId: 8, amount: 20000, interestRate: 1.5, term: 6, status: "defaulted", requestedAt: "2024-07-21T08:40:00Z", updatedAt: "2024-07-22T11:00:00Z", type: loanTypes[3], branch: branches[2], loanOfficer: loanOfficers[3], disbursementDate: "2024-07-22T11:00:00Z" },
+  { id: 9, userId: 9, amount: 55000, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2024-09-08T09:20:00Z", updatedAt: "2024-09-09T12:30:00Z", type: loanTypes[0], branch: branches[3], loanOfficer: loanOfficers[0], disbursementDate: "2024-09-09T12:30:00Z" },
+  { id: 10, userId: 10, amount: 40000, interestRate: 1.8, term: 6, status: "active", requestedAt: "2024-11-16T09:05:00Z", updatedAt: "2024-11-18T12:15:00Z", type: loanTypes[1], branch: branches[4], loanOfficer: loanOfficers[1], disbursementDate: "2024-11-18T12:15:00Z" },
+  { id: 11, userId: 11, amount: 75000, interestRate: 1.5, term: 12, status: "pending", requestedAt: "2025-01-05T09:10:00Z", updatedAt: "2025-01-06T11:20:00Z", type: loanTypes[2], branch: branches[0], loanOfficer: loanOfficers[2], disbursementDate: null },
+  { id: 12, userId: 12, amount: 32000, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2025-03-12T09:45:00Z", updatedAt: "2025-03-15T12:00:00Z", type: loanTypes[3], branch: branches[1], loanOfficer: loanOfficers[3], disbursementDate: "2025-03-15T12:00:00Z" },
+  { id: 13, userId: 13, amount: 68000, interestRate: 1.2, term: 12, status: "overdue", requestedAt: "2025-05-28T09:30:00Z", updatedAt: "2025-05-30T12:10:00Z", type: loanTypes[0], branch: branches[2], loanOfficer: loanOfficers[0], disbursementDate: "2025-05-30T12:10:00Z" },
+  { id: 14, userId: 14, amount: 47000, interestRate: 1.8, term: 6, status: "active", requestedAt: "2025-07-15T09:20:00Z", updatedAt: "2025-07-16T11:50:00Z", type: loanTypes[1], branch: branches[3], loanOfficer: loanOfficers[1], disbursementDate: "2025-07-16T11:50:00Z" },
+  { id: 15, userId: 15, amount: 59000, interestRate: 1.5, term: 12, status: "pending", requestedAt: "2025-09-02T09:10:00Z", updatedAt: "2025-09-03T11:20:00Z", type: loanTypes[2], branch: branches[4], loanOfficer: loanOfficers[2], disbursementDate: null },
+  { id: 16, userId: 16, amount: 36000, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2025-10-12T09:45:00Z", updatedAt: "2025-10-15T12:30:00Z", type: loanTypes[3], branch: branches[0], loanOfficer: loanOfficers[3], disbursementDate: "2025-10-15T12:30:00Z" },
+  { id: 17, userId: 17, amount: 81000, interestRate: 1.2, term: 12, status: "active", requestedAt: "2023-04-20T09:15:00Z", updatedAt: "2023-04-25T12:40:00Z", type: loanTypes[0], branch: branches[1], loanOfficer: loanOfficers[0], disbursementDate: "2023-04-25T12:40:00Z" },
+  { id: 18, userId: 18, amount: 21000, interestRate: 1.5, term: 6, status: "defaulted", requestedAt: "2023-06-27T09:30:00Z", updatedAt: "2023-06-28T11:50:00Z", type: loanTypes[1], branch: branches[2], loanOfficer: loanOfficers[1], disbursementDate: "2023-06-28T11:50:00Z" },
+  { id: 19, userId: 19, amount: 56000, interestRate: 2.0, term: 3, status: "paid", requestedAt: "2023-08-10T09:40:00Z", updatedAt: "2023-08-12T12:20:00Z", type: loanTypes[2], branch: branches[3], loanOfficer: loanOfficers[2], disbursementDate: "2023-08-12T12:20:00Z" },
+  { id: 20, userId: 20, amount: 41000, interestRate: 1.8, term: 6, status: "active", requestedAt: "2023-10-23T09:50:00Z", updatedAt: "2023-10-25T12:45:00Z", type: loanTypes[3], branch: branches[4], loanOfficer: loanOfficers[3], disbursementDate: "2023-10-25T12:45:00Z" },
 ];
+
+const statusLabelMap: Record<string, string> = {
+  active: 'Ativos',
+  paid: 'Quitados',
+  overdue: 'Atrasados',
+  pending: 'Pendentes',
+  defaulted: 'Inadimplentes',
+};
 
 export interface Document {
   id: number;

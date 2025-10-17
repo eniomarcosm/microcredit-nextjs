@@ -12,8 +12,8 @@ export default function DashboardLayout({
       <HeaderNav />
       <main className="w-full">
         {/* Constrained container for better desktop viewing */}
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-none lg:max-w-6xl">{children}</div>
+        <div className="mx-auto max-w-[1440px] px-4 py-6 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-none lg:max-w-[1440px]">{children}</div>
         </div>
       </main>
     </div>
