@@ -52,7 +52,7 @@ export default function ClientTable({ filteredClients, setSelectedClient }: Clie
               <TableHead>Ações</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className='text-sm'>
             {currentClients.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={6} className="text-center text-muted-foreground">
@@ -65,7 +65,7 @@ export default function ClientTable({ filteredClients, setSelectedClient }: Clie
             ) : (
               currentClients.map((user) => (
                 <TableRow key={user.id}>
-                  <TableCell>{user.name}</TableCell>
+                  <TableCell >{user.name}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.phone}</TableCell>
                   <TableCell>{getStatusBadge(user.documentStatus)}</TableCell>
